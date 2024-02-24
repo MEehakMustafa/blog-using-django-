@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        * {
+  box-sizing: border-box;
+}
+
+body {
+  
+  padding: 20px;
+  background: #f1f1f1;
+}
+
+.header {
+  padding: 2px;
+  font-size: 40px;
+  text-align: center;
+  background: white;
+}
+
+.leftcol {   
+  float: left;
+  width: 100%;
+}
+
+.card {
+   background-color: white;
+   padding: 20px;
+   margin-top: 20px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 800px) {
+  .leftcoloumn, .rightcoloumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Mehak's Blog</h1>
+    </div>
+    <div class="row">
+    <div class="leftcol">
+        {% for post in posts reversed %}
+        <a style="text-decoration: none; color: black;" href="/posts/{{post.id}}">
+            <div class="card">
+                <h2>{{post.title}}</h2>
+                <h5>{{post.created_at}}</h5>
+                <p>{{post.body|truncatewords:10}}</p>
+                {% endfor %}
+        </a>
+    </div>
+    </div>
+    </div>
+</body>
+
+</html>
