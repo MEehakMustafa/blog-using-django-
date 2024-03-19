@@ -8,3 +8,6 @@ def index(request):
 def post_detail(request, pk):
     posts = post.objects.get(id=pk)
     return render(request, 'post_detail.html', {'post': posts})
+
+
+    

@@ -1,71 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <style>
-        * {
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
   box-sizing: border-box;
 }
 
 body {
-  
-  padding: 20px;
-  background: #f1f1f1;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f1f1f1;
 }
 
 .header {
-  padding: 2px;
-  font-size: 40px;
+  background-color: #333;
+  color: white;
+  padding: 20px 0;
   text-align: center;
-  background: white;
 }
 
-.leftcol {   
-  float: left;
-  width: 100%;
+.header h2 {
+  margin: 0;
+  font-size: 42px; /* slightly larger font size */
+}
+
+.leftcolumn {   
+  width: 70%;
+  margin: 0 auto;
 }
 
 .card {
-   background-color: white;
-   padding: 20px;
-   margin-top: 20px;
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+}
+
+.card a {
+  text-decoration: none;
+  color: #333;
+}
+
+.card h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.card h5 {
+  color: #666;
+  margin-bottom: 10px;
 }
 
 @media screen and (max-width: 800px) {
-  .leftcoloumn, .rightcoloumn {   
-    width: 100%;
-    padding: 0;
+  .leftcolumn {   
+    width: 90%;
   }
 }
-    </style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+</style>
 </head>
-
 <body>
-    <div class="header">
-        <h1>Mehak's Blog</h1>
-    </div>
-    <div class="row">
-    <div class="leftcol">
-        {% for post in posts reversed %}
-        <a style="text-decoration: none; color: black;" href="/posts/{{post.id}}">
-            <div class="card">
-                <h2>{{post.title}}</h2>
-                <h5>{{post.created_at}}</h5>
-                <p>{{post.body|truncatewords:10}}</p>
-                {% endfor %}
-        </a>
-    </div>
-    </div>
-    </div>
-</body>
 
+<div class="header">
+  <h2>Mehak's Blog</h2>
+</div>
+
+<div class="leftcolumn">
+  {% for post in posts reversed %}
+  <div class="card">
+    <a href="/post/{{post.id}}">
+      <h2>{{post.title}}</h2>
+      <h5>{{post.created_at}}</h5>
+      <p>{{post.body|truncatewords:20}}</p>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+
+<footer style="background-color: #333; color: white; text-align: center; padding: 20px 0;">
+  <p>&copy; Mehak 2024 blog</p>
+</footer>
+
+</body>
 </html>
